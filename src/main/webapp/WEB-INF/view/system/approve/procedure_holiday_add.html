@@ -3,8 +3,7 @@
 	<div class="ibox-content">
 		<div class="form-horizontal" id="procedureInfoForm">
 		
-			<input type="hidden" id="id" value="">
-
+			<input type="hidden" id="temid" value="${temid}">
 			<div class="row">
 				<div class="col-sm-10" id ="procedureInfo">
 					<#input id="temName" name="流程名称" underline="true" />
@@ -36,8 +35,8 @@
 
 			<div class="row btn-group-m-t">
 				<div class="col-sm-10">
-					<#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MenuInfoDlg.addSubmit()"/>
-					<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MenuInfoDlg.close()"/>
+					<#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ApproveDlg.addprocedure()"/>
+					<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ApproveDlg.close()"/>
 				</div>
 			</div>
 		</div>
