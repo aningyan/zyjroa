@@ -1,8 +1,5 @@
 package com.zyjr.zyjroa.modular.system.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -11,17 +8,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zyjr.zyjroa.common.annotion.Permission;
 import com.zyjr.zyjroa.common.exception.BizExceptionEnum;
 import com.zyjr.zyjroa.common.exception.BussinessException;
+import com.zyjr.zyjroa.common.persistence.dao.HolidayMapper;
 import com.zyjr.zyjroa.common.persistence.dao.ProcedureHolidayMapper;
 import com.zyjr.zyjroa.common.persistence.dao.TemplateMapper;
+import com.zyjr.zyjroa.common.persistence.model.Holiday;
 import com.zyjr.zyjroa.common.persistence.model.ProcedureHoliday;
-import com.zyjr.zyjroa.common.persistence.model.Template;
 import com.zyjr.zyjroa.core.base.controller.BaseController;
 import com.zyjr.zyjroa.core.shiro.ShiroKit;
 import com.zyjr.zyjroa.core.util.ToolUtil;
-import com.zyjr.zyjroa.modular.system.warpper.DeptWarpper;
 
 /**
  * 申请控制器
@@ -39,6 +37,9 @@ public class ApproveController extends BaseController {
     
     @Resource
     TemplateMapper templateMapper;
+    
+    @Resource
+    HolidayMapper holidayMapper;
 
 
     /**
@@ -109,13 +110,30 @@ public class ApproveController extends BaseController {
 
     
     /**
-     * 我的申请列表
+     * 提交审批
+     * dataJason 为表单数据 各个表单不一样
      */
-    @RequestMapping("/myApply")
+    @RequestMapping("/commitApprove")
     @ResponseBody
-    public Object myApply() {
-          return this.templateMapper.selectList(null);
-    	
+    public Object commitApprove(Integer templateid,String dataJson) {
+    	//查找流程
+    	//确认当前审批人
+    	//插入审批记录表
+    	return super.SUCCESS_TIP;
+
+    }
+
+    /**
+     * 审批
+     */
+    @RequestMapping("/doApprove")
+    @ResponseBody
+    public Object doApprove(Integer templateid,Integer approveid) {
+    	//查找流程
+    	//更改审批记录表状态
+    	//更改审批人表状态
+        return super.SUCCESS_TIP;
+
     }
 
     
@@ -129,24 +147,14 @@ public class ApproveController extends BaseController {
     	
     }
 
-    
-    /**
-     * 表单列表
-     */
-    @RequestMapping("/templatelist")
-    @ResponseBody
-    public Object templatelist() {
-          return this.templateMapper.selectList(null);
-    	
-    }
 
     
     /**
-     * 表单列表
+     * 我提交的申请
      */
-    @RequestMapping("/templatelist")
+    @RequestMapping("/myCommit")
     @ResponseBody
-    public Object templatelist() {
+    public Object myCommit() {
           return this.templateMapper.selectList(null);
     	
     }
