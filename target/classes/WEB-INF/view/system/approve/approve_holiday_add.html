@@ -1,0 +1,45 @@
+@layout("/common/_container.html"){ 
+<body>  
+    <h2>员工请假单</h1> 
+ <table border="1">  
+        <tr>  
+            <td height="50">姓名</td> 
+            <td colspan="1"  width="100">${loginUserName}</td>  
+            <td colspan="2" width="40">所属部门</td>  
+            <td colspan="1" width="100">${loginDeptName}</td> 
+            <td colspan="1" width="50">职位</td>  
+            <td colspan="1" width="100">${loginJob}</td>   
+        </tr>  
+        <tr>  
+            <td height="70">请假类型 
+            <td colspan="6"  width="227">
+            	<label><input name="holidayType" type="radio" value="1" />年假</label> 
+            	<label><input name="holidayType" type="radio" value="2" />年假</label> 
+            	<label><input name="holidayType" type="radio" value="3" />年假</label> 
+            	<label><input name="holidayType" type="radio" value="4" />年假</label> 
+            	<label><input name="holidayType" type="radio" value="5" />年假</label> 
+			</td>  
+        </tr>  
+        <tr  id="time">  
+            <td height="45">起止时间</td>  
+            <td colspan="3" width="220">
+				 <input type="text" class="demo-input" placeholder="请选择日期" id="startTime">
+            </td>  
+            <td colspan="3" width="220">
+            	<input type="text" class="demo-input" placeholder="请选择日期" id="endTime">
+            	
+			</td>  
+        </tr>  
+        <tr>  
+            <td height="45">天数</td>  
+            <td width="470" colspan="6"> </td>  
+        </tr>  
+        <tr>  
+            <td height="120">请假事由</td>  
+            <td  colspan="6"> </td>  
+        </tr>  
+    </table>  
+</body>  
+@}
+<script src="${ctxPath}/static/modular/system/approve/approve_info.js"></script>
+

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyjr.zyjroa.modular.system.dao.CompanyDao">
+
+	<select id="tree" resultType="com.zyjr.zyjroa.core.node.ZTreeNode">
+		select comid as id,pid as pId,compabbr as name,
+		(
+		CASE
+		WHEN (pId = 0 OR pId IS NULL) THEN
+			'true'
+		ELSE
+			'false'
+		END
+		) as isOpen from company
+	</select>
+
+	<select id="list" resultType="map">
+		select c.*,u.name as lawyerName,
+		(
+		CASE
+		WHEN (c.initialized = 0 OR c.initialized IS NULL) THEN
+			'未确认'
+		ELSE
+			'已确认'
+		END
+		) as initializedText,
+		(
+		CASE
+		WHEN (c.closed = 0 OR c.closed IS NULL) THEN
+			'未封存'
+		ELSE
+			'已封存'
+		END
+		) as closedText,
+		
+		(
+		CASE
+		WHEN (c.isdisable = 0 OR c.isdisable IS NULL) THEN
+			'未失效'
+		ELSE
+			'已失效'
+		END
+		) as isdisableText	
+		 from company c
+		 join user u on c.lawyer=u.id
+		<if test="condition != null and condition != ''">
+			where c.compabbr like CONCAT('%',#{condition},'%') or c.title like CONCAT('%',#{condition},'%')
+		</if>
+		order by c.xorder ASC
+	</select>
+	
+	
+	
+	
+	
+	
+	<update id="closeCompany">
+		update company set closed=1,ischange=1,closedby=#{userid},closedtime=#{time} where comid=#{comid}
+	</update>
+
+	<update id="affirmCompany">
+		update company set initialized=1,ischange=1,initializedby=#{userid},initializedtime=#{time} where comid=#{comid}
+	</update>
+	
+	<update id="loseCompany">
+		update company set isdisable=1,ischange=1,disableddate=#{time} where comid=#{comid}
+	</update>
+
+</mapper>

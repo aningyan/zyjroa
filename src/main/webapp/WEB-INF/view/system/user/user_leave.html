@@ -1,0 +1,31 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+	<div class="ibox-content">
+		<div class="form-horizontal" id="translateForm">
+			
+			<input type="hidden" id="id" value="${user.id}">
+			<div class="row">
+				<div class="col-sm-10">
+					<#input id="name" name="姓名" type="email"  readonly="readonly" value="${user.name}"/>
+					<#input id="deptid" name="部门" type="email"  readonly="readonly" value="${deptName}"/>
+					<#input id="entrydate" name="入职日期" underline="true"  readonly="readonly" value="${user.entrydate}"/>
+					<#input id="probation" name="转正日期" underline="true"  readonly="readonly" value="${user.translateDate}"/>
+					<#input id="contractFirstPaty" name="合同签订甲方" underline="true"  readonly="readonly" value="${user.contractFirstPaty}"/>
+					<#input id="contractEndDate" name="合同到期日" underline="true"  readonly="readonly" value="${user.contractEndDate}"/>
+					<#input id="leaveDate" name="离职日期" underline="true" type="date"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"
+						 underline="true"/>
+				</div>
+			</div>
+			<div class="row btn-group-m-t">
+				<div class="col-sm-10">
+					<#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="UserInfoDlg.leaveSubmit()"/>
+					<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="UserInfoDlg.close()"/>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/system/user/user_translate.js"></script>
+@}

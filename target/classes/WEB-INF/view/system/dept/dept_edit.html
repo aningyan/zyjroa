@@ -1,0 +1,50 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="deptInfoForm">
+
+            <input type="hidden" id="id" value="${dept.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                
+                    <#input id="simplename" name="部门名称" underline="true" value="${dept.simplename}"/>
+                    <#input id="fullname" name="部门全称" underline="true" value="${dept.fullname}"/>
+					<#TimeCon id="effectdate" name="部门创建日期" isTime="true" pattern="YYYY-MM-DD" value="${dept.effectdate}"/>
+               		 <#select id="comid" name="所属公司" readonly="readonly"
+                          style="background-color: #ffffff !important;" />
+               
+                  	<#input id="num" name="排序" underline="true" value="${dept.num}"/>
+                    <#input id="remark" name="备注" underline="true" value="${dept.remark}"/>
+                </div>
+                <div class="col-sm-6">
+		 <#select id="depgrade" name="部门级别" readonly="readonly"
+                          style="background-color: #ffffff !important;"/>
+                <#input id="depcost" name="成本中心" underline="true" value="${dept.depcost}"/>
+       				<#select id="director" name="部门负责人" readonly="readonly" 
+                          style="background-color: #ffffff !important;" />
+                    <#input id="pName" name="上级部门" readonly="readonly" hidden="pid"
+                            hiddenValue="${dept.pid}" value="${pName}"
+                            clickFun="DeptInfoDlg.showDeptSelectTree(); return false;"
+                            style="background-color: #ffffff !important;"/>
+                </div>
+            </div>
+
+            <!-- 父级部门的选择框 -->
+            <div id="parentDeptMenu" class="menuContent"
+                 style="display: none; position: absolute; z-index: 200;">
+                <ul id="parentDeptMenuTree" class="ztree tree-box" style="width: 245px !important;"></ul>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="DeptInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="DeptInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/dept/dept_info.js"></script>
+@}

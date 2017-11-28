@@ -1,0 +1,55 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="companyInfoForm">
+
+            <input type="hidden" id="comid" value="${company.comid}">
+			<input type="hidden" id="lawyerValue" value="${company.lawyer}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                 <#input id="compcode" name="公司代码" underline="true" value="${company.compcode}"/>
+                    <#input id="compabbr" name="公司简称" underline="true" value="${company.compabbr}"/>
+
+                    <#input id="title" name="公司全称" underline="true" value="${company.title}"/>
+
+ 					<#input id="address" name="公司地址" underline="true" value="${company.address}"/>
+               		<#input id="regaddress" name="公司注册地址" underline="true" value="${company.regaddress}"/>
+ 					
+ 					<#TimeCon id="effectdate" name="公司创建日期" isTime="true" pattern="YYYY-MM-DD" value="${company.effectdate}"/>
+                    <#input id="tel" name="公司电话" underline="true" value="${company.tel}"/>
+                    <#input id="fax" name="公司传真" underline="true" value="${company.fax}"/>
+                    <#input id="remark" name="备注" underline="true" value="${company.remark}"/>
+                </div>
+                <div class="col-sm-6">
+
+       				  <#input id="xorder" name="排序" underline="true" value="${company.xorder}"/>
+           			<#select id="compgrade" name="公司级别" readonly="readonly" 
+                          style="background-color: #ffffff !important;"/> 
+                   <#select id="lawyer" name="法人" readonly="readonly" 
+                          style="background-color: #ffffff !important;" value="${lawyerName}"/>
+                    <#input id="pName" name="上级公司" readonly="readonly" hidden="pid"
+                            hiddenValue="${company.pid}" value="${pName}"
+                            clickFun="CompanyInfoDlg.showCompanySelectTree(); return false;"
+                            style="background-color: #ffffff !important;"/>
+                </div>
+            </div>
+
+            <!-- 父级部门的选择框 -->
+            <div id="parentCompanyMenu" class="menuContent"
+                 style="display: none; position: absolute; z-index: 200;">
+                <ul id="parentCompanyMenuTree" class="ztree tree-box" style="width: 245px !important;"></ul>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CompanyInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CompanyInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/company/company_info.js"></script>
+@}

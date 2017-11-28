@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyjr.zyjroa.modular.system.dao.UserMgrDao">
+
+	<sql id="Base_Column_List">
+		id, account, name, birthday, sex, email, avatar,
+		phone, roleid,
+		deptid, status,
+		createtime, version
+	</sql>
+
+	<sql id="Base_Column_List_With_Pwd">
+		id, account, name, birthday,password, sex, email, avatar,
+		phone, roleid,salt,
+		deptid, status,
+		createtime, version
+	</sql>
+
+	<select id="selectUsers" resultType="map">
+		select
+		
+		u.id, u.account, u.name, u.birthday, u.sex, u.email, u.avatar,
+		u.phone, u.roleid,
+		u.deptid, u.status,
+		u.createtime, u.version
+		,u.job,s.name as direct,u.entrydate,
+		(
+		CASE
+		WHEN (u.usertype = 1) THEN
+			'试用期员工'
+		WHEN (u.usertype = 2) THEN
+			'实习期员工'
+		WHEN (u.usertype = 3) THEN
+			'正式员工'
+		WHEN (u.usertype = 4) THEN
+			'离职员工'
+		ELSE
+			'-'
+		END
+		) as usertype	
+		from user u
+		left join user s on u.direct=s.id
+		where u.status != 3
+		<if test="name != null and name != ''">
+			and (u.phone like CONCAT('%',#{name},'%')
+			or u.account like CONCAT('%',#{name},'%')
+			or u.name like CONCAT('%',#{name},'%'))
+		</if>
+		<if test="deptid != null and deptid != 0">
+			and (u.deptid = #{deptid} or u.deptid in ( select id from dept where pids like CONCAT('%[', #{deptid}, ']%') ))
+		</if>
+		<if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
+			and (u.entrydate between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+		</if>
+		<if test="onOrLeave != null and onOrLeave !=0 and onOrLeave==1">
+			and (u.usertype in(1,2,3))
+		</if>
+		<if test="onOrLeave != null and onOrLeave !=0 and onOrLeave==2">
+			and (u.usertype =4)
+		</if>
+	</select>
+
+	<update id="setStatus">
+		update user set status = #{status} where id =
+		#{userId}
+	</update>
+
+	<update id="changePwd">
+		update user set password = #{pwd} where id =
+		#{userId}
+	</update>
+
+	<update id="setRoles">
+		update user set roleid = #{roleIds} where id =
+		#{userId}
+	</update>
+
+	<select id="getByAccount" resultType="user">
+		select
+		<include refid="Base_Column_List_With_Pwd" />
+		from user where account = #{account} and status != 3
+	</select>
+	
+	
+	
+	<update id="translate">
+		update user set usertype = #{usertype}
+		<if test="usertype != null and usertype !=0 and usertype==4">
+			, status =2,leave_date=#{date}
+		</if>
+		<if test="usertype != null and usertype !=0 and usertype==3">
+			, translate_date=#{date}
+		</if>
+		 where id =#{userId}
+	</update>
+
+</mapper>

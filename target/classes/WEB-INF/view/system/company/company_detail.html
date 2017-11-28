@@ -1,0 +1,49 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="companyInfoForm">
+
+            <input type="hidden" id="id" value="${company.comid}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#input id="compabbr" name="公司简称" underline="true" value="${company.compabbr}" readonly="readonly" />
+                    <#input id="title" name="公司全称" underline="true" value="${company.title}" readonly="readonly" />
+ 					<#input id="compcode" name="公司代码" underline="true" readonly="readonly" value="${company.compcode}" />
+                    <#input id="effectdate" name="公司创建日期" underline="true" readonly="readonly" value="${company.effectdate}" />
+		 			<#input id="compgrade" name="公司级别" underline="true" readonly="readonly" value="${levelText}" />
+ 					<#input id="lawyer" name="公司法人" underline="true" readonly="readonly" value="${lawyer}" />
+ 					<#input id="address" name="公司地址" underline="true" readonly="readonly" value="${company.address}" />
+ 					<#input id="regaddress" name="公司注册地址" underline="true" readonly="readonly" value="${company.regaddress}" />
+ 					<#input id="tel" name="电话" underline="true" readonly="readonly" value="${company.tel}" />
+ 					<#input id="fax" name="传真" underline="true" readonly="readonly" value="${company.fax}" />
+ 					<#input id="isdisable" name="是否失效" underline="true" readonly="readonly" value="${isdisable}" />
+ 					<#input id="disableddate" name="失效日期" underline="true" readonly="readonly" value="${company.disableddate}" />
+ 					<#input id="xorder" name="排序" underline="true" readonly="readonly" value="${company.xorder}" />
+ 					
+                </div>
+                <div class="col-sm-6">
+                    <#input id="remark" name="备注" underline="true" value="${company.remark}" readonly="readonly" />
+                    
+                    
+                    <#input id="ischange" name="是否发生变更" underline="true" readonly="readonly" value="${ischange}" />
+                    <#input id="regby" name="登记人" underline="true" readonly="readonly" value="${regby}" />
+                    
+                    <#input id="regdate" name="登记日期" underline="true" readonly="readonly" value="${company.regdate}" />
+                    
+ 					<#input id="initialized" name="是否确认" underline="true" readonly="readonly" value="${initialized}" />
+ 					<#input id="initializedby" name="确认人" underline="true" readonly="readonly" value="${initializedby}" />
+ 					<#input id="initializedtime" name="确认时间" underline="true" readonly="readonly" value="${company.initializedtime}" />
+ 					<#input id="closed" name="是否封存" underline="true" readonly="readonly" value="${closed}" />
+ 					<#input id="closedby" name="封存人" underline="true" readonly="readonly" value="${closedby}" />
+ 					<#input id="closedtime" name="封存时间" underline="true" readonly="readonly" value="${company.closedtime}" />
+                    <#input id="pName" name="上级公司" readonly="readonly" value="${pName}"/>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/company/company_info.js"></script>
+@}

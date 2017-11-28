@@ -1,0 +1,94 @@
+<div class="template-flow " ng-controller="TemplateFlowController as TemFlow">
+  <message-alert ng-if="message" type="TemFlow.messageType" dismiss-on-timeout="1500" message="message" close="closeAlert()"></message-alert>
+	<div class="common-header clearfix">
+	<!-- <span class="title pull-left">综合管理<i class="icons-svg icon-dot"></i>审批模板管理<i class="icons-svg icon-dot"></i></span> -->
+    <span class="title pull-left" ng-bind="TemFlow.approveName"></span>
+    <div class="filter-part pull-right clearfix">
+      <a ng-href="{{BASE_PATH}}sundries/approveTemplate" class="header_btn pull-right clearfix ml15">
+        <i class="fa newIcon new-back pull-left"></i><span class="pull-left">返回</span>
+      </a>
+      <button class="common-btn pull-right clearfix" ng-click="addFlow()">
+       	<i class="fa newIcon new-tianjia pull-left"></i><span class="pull-left">添加流程</span>
+      </button>
+    </div>
+  </div>
+  <div class="content pt15b15 list-container">
+    <div ng-if="flows.length == 0" class="no-data-img">
+      <img ng-src="images/no_liucheng.png">
+      <span>暂无流程</span>
+    </div>
+    <ul id="ul" class="nav flow-nav">
+      <li ng-repeat="(index, item) in flows">
+        <div class="flow-detail-header clearfix">
+          <div ng-if="!item.isEdit" class="pull-left">
+            <span class="flow-name" ng-bind="item.procedureName"></span>
+            <span class="flow-log">
+              <span ng-bind="item.name"></span> 于 <span ng-bind="item.updateTime | dateFormat: 'YYYY年MM月DD日 HH:mm'"></span> 最后编辑</span>
+          </div>
+          <div ng-if="item.isEdit" class="flow-name-div pull-left clearfix">
+            <!-- <span class="pull-left">流程名称</span> -->
+            <div class="form-group form-inline pull-left">
+              <label class="flow-label">流程名称</label>
+              <input type="text" class="form-control" maxlength="80" ng-model="item.procedureName">
+            </div>
+          </div>
+          <div ng-if="!item.isEdit" class="right-part pull-right">
+          <button class="btn btn-remove" ng-disabled="item.removeActive" ng-click="removeFlow(item, index)">删除</button>
+            <button class="btn btn-blue-border" ng-click="editFlow(item)">编辑</button>
+          </div>
+          <div ng-if="item.isEdit" class="right-part pull-right">
+            <button class="btn btn-cancel" ng-click="cancel(index, item)">取消</button>
+            <button class="btn btn-blue-sm" ng-click="save(item)">保存</button>
+          </div>
+        </div>
+        <div class="flow-div">
+          <span class="flow-title">条件明细</span>
+          <div class="condition">
+            <ul class="nav clearfix">
+              <li ng-repeat="temp in item.procedureFields">
+                <template template-data="temp" apply="temp" show-key="temp.showKey" radios="radios" check-items="departList" check-company-items="TemFlow.companys" is-Detail="!item.isEdit"></template>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="flow-div">
+          <span class="flow-title">流程明细</span>
+          <div class="condition">
+            <div class="form-group form-inline clearfix">
+              <label class="flow-label pull-left" ng-class="{'edit-label': item.isEdit}">审批人</label>
+              <ul ng-if="!item.isEdit" class="nav navbar-nav">
+                <li ng-repeat="(i, approver) in item.procedureApprover" class="clearfix">
+                  <span class="flow-span pull-left" ng-bind="approver.name"></span>
+                  <i ng-if="i < item.procedureApprover.length - 1" class="fa fa-long-arrow-right pull-left"></i>
+                </li>
+              </ul>
+              <master-input ng-if="item.isEdit" class="pull-left" masters="item.procedureApprover" employees="employees" is-flow="true" is-replace="true"></master-input>
+            </div>
+            <div class="form-group form-inline clearfix">
+              <label class="flow-label pull-left" ng-class="{'edit-label': item.isEdit}">经办人</label>
+              <ul ng-if="!item.isEdit" class="nav navbar-nav">
+                <li ng-repeat="(i, operator) in item.operators" class="clearfix">
+                  <span class="flow-span pull-left" ng-bind="operator.name"></span>
+                  <i ng-if="i < item.operators.length - 1" class="fa fa-long-arrow-right pull-left"></i>
+                </li>
+              </ul>
+              <master-input ng-if="item.isEdit" class="pull-left" masters="item.operators" employees="employees" single-selected="true" is-flow="true" is-replace="true"></master-input>
+            </div>
+            <div class="form-group form-inline clearfix">
+              <label class="flow-label pull-left" ng-class="{'edit-label': item.isEdit}">传阅人</label>
+              <ul ng-if="!item.isEdit" class="nav navbar-nav">
+                <li ng-repeat="(i, reader) in item.readers" class="clearfix">
+                  <span class="flow-span pull-left" ng-bind="reader.name"></span>
+                  <i ng-if="i < item.readers.length - 1" class="fa fa-long-arrow-right pull-left"></i>
+                </li>
+              </ul>
+              <master-input ng-if="item.isEdit" class="pull-left" masters="item.readers" employees="employees" single-selected="true" is-flow="true" is-replace="true"></master-input>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+

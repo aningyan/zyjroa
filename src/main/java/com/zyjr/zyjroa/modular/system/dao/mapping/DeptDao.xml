@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyjr.zyjroa.modular.system.dao.DeptDao">
+
+	<select id="tree" resultType="com.zyjr.zyjroa.core.node.ZTreeNode">
+		select id,pid as pId,simplename as name,
+		(
+		CASE
+		WHEN (pId = 0 OR pId IS NULL) THEN
+			'true'
+		ELSE
+			'false'
+		END
+		) as isOpen from dept
+	</select>
+
+	<select id="list" resultType="map">
+		select d.*,u.name as  directorName,
+		(
+		CASE
+		WHEN (d.initialized = 0 OR d.initialized IS NULL) THEN
+			'未确认'
+		ELSE
+			'已确认'
+		END
+		) as initializedText,
+		(
+		CASE
+		WHEN (d.closed = 0 OR d.closed IS NULL) THEN
+			'未封存'
+		ELSE
+			'已封存'
+		END
+		) as closedText,
+		
+		(
+		CASE
+		WHEN (d.isdisable = 0 OR d.isdisable IS NULL) THEN
+			'未失效'
+		ELSE
+			'已失效'
+		END
+		) as isdisableText	
+		from dept d
+		 join user u on d.director=u.id
+		<if test="condition != null and condition != ''">
+			where d.simplename like CONCAT('%',#{condition},'%') or d.fullname like CONCAT('%',#{condition},'%')
+		</if>
+		<if test="comid != null and comid != 0">
+			and (comid = #{comid} or comid in ( select comid from company where pids like CONCAT('%[', #{comid}, ']%') ))
+		</if>
+		order by d.num ASC
+	</select>
+	
+	
+	<update id="closeDept">
+		update dept set closed=1,ischange=1,closedby=#{userid},closedtime=#{time} where id=#{deptId}
+	</update>
+
+	<update id="affirmDept">
+		update dept set initialized=1,ischange=1,initializedby=#{userid},initializedtime=#{time} where id=#{deptId}
+	</update>
+	
+		
+	<update id="loseDept">
+		update dept set isdisable=1,ischange=1,disableddate=#{time} where id=#{deptId}
+	</update>
+</mapper>

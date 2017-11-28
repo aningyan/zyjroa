@@ -1,0 +1,52 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="companyInfoForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#input id="compcode" name="公司代码" underline="true"/>
+
+                    <#input id="compabbr" name="公司简称" underline="true"/>
+                    <#input id="title" name="公司全称" underline="true"/>
+               		<#input id="address" name="公司地址" underline="true"/>
+               		<#input id="regaddress" name="公司注册地址" underline="true"/>
+               		<#input id="effectdate" name="公司创建日期" underline="true" type="date"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+                    <#input id="tel" name="公司电话" underline="true"/>
+                    <#input id="fax" name="公司传真" underline="true"/>
+                    <#input id="remark" name="备注" underline="true"/>
+                </div>
+                <div class="col-sm-6">
+                    <#input id="xorder" name="排序" underline="true"/>
+                      <#select id="compgrade" name="公司级别" readonly="readonly" hidden="pid"
+                          style="background-color: #ffffff !important;"/>
+                      <#select id="lawyer" name="法人" readonly="readonly" hidden="pid"
+                          style="background-color: #ffffff !important;"/>
+
+                    <#input id="pName" name="上级公司" readonly="readonly" hidden="pid"
+                            clickFun="CompanyInfoDlg.showCompanySelectTree(); return false;"
+                            style="background-color: #ffffff !important;"/>
+                </div>
+            </div>
+
+            <!-- 父级公司的选择框 -->
+            <div id="parentCompanyMenu" class="menuContent"
+                 style="display: none; position: absolute; z-index: 200;">
+                <ul id="parentCompanyMenuTree" class="ztree tree-box" style="width: 245px !important;"></ul>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CompanyInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CompanyInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/company/company_info.js"></script>
+@}

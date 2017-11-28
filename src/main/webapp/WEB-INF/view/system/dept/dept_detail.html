@@ -1,0 +1,41 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+
+    <div class="ibox-content">
+      <div class="form-horizontal" id="deptInfoForm"> 
+            <input type="hidden" id="id" value="${dept.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#input id="simplename" name="部门名称" underline="true" value="${dept.simplename}" readonly="readonly" />
+					
+                    <#input id="fullname" name="部门全称" underline="true" value="${dept.fullname}" readonly="readonly" />
+
+ 					 <#input id="comid" name="所属公司" underline="true" readonly="readonly" value="${companyName}"/>
+               
+ 					<#input id="effectdate" name="部门创建日期" underline="true" readonly="readonly" value="${dept.effectdate}" />
+					<#input id="isdisable" name="是否失效" underline="true" readonly="readonly" value="${isdisable}" />
+ 					<#input id="disableddate" name="失效日期" underline="true" readonly="readonly" value="${dept.disableddate}" />
+                    <#input id="remark" name="备注" underline="true" value="${dept.remark}" readonly="readonly" />
+                </div>
+                <div class="col-sm-6">
+                  	<#input id="num" name="排序" underline="true"  readonly="readonly" value="${dept.num}"/>
+                    <#input id="depgrade" name="级别" underline="true" readonly="readonly" value="${levelText}"/>
+                    <#input id="depcost" name="成本中心" underline="true" readonly="readonly" value="${dept.depcost}"/>
+                    <#input id="director" name="部门负责人" underline="true" readonly="readonly" value="${directorName}"/>
+                    <#input id="initialized" name="是否确认" underline="true" readonly="readonly" value="${initialized}" />
+ 					<#input id="initializedby" name="确认人" underline="true" readonly="readonly" value="${initializedby}" />
+ 					<#input id="initializedtime" name="确认时间" underline="true" readonly="readonly" value="${dept.initializedtime}" />
+ 					<#input id="closed" name="是否封存" underline="true" readonly="readonly" value="${closed}" />
+ 					<#input id="closedby" name="封存人" underline="true" readonly="readonly" value="${closedby}" />
+ 					<#input id="closedtime" name="封存时间" underline="true" readonly="readonly" value="${dept.closedtime}" />
+                    
+                    <#input id="pName" name="上级部门" readonly="readonly" value="${pName}"/>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/dept/dept_info.js"></script>
+@}

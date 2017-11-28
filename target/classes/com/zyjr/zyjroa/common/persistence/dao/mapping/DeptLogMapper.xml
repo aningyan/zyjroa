@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyjr.zyjroa.common.persistence.dao.DeptLogMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.zyjr.zyjroa.common.persistence.model.DeptLog">
+		<id column="id" property="id" />
+		<result column="num" property="num" />
+		<result column="pid" property="pid" />
+		<result column="pids" property="pids" />
+		<result column="simplename" property="simplename" />
+		<result column="fullname" property="fullname" />
+		<result column="tips" property="tips" />
+		<result column="version" property="version" />
+		<result column="depcode" property="depcode" />
+		<result column="compid" property="compid" />
+		<result column="depgrade" property="depgrade" />
+		<result column="deptchange" property="deptchange" />
+		<result column="depcost" property="depcost" />
+		<result column="director" property="director" />
+		<result column="effectdate" property="effectdate" />
+		<result column="isdisabled" property="isdisabled" />
+		<result column="disableddate" property="disableddate" />
+		<result column="remark" property="remark" />
+		<result column="regby" property="regby" />
+		<result column="regdate" property="regdate" />
+		<result column="initialized" property="initialized" />
+		<result column="initializedby" property="initializedby" />
+		<result column="initializedtime" property="initializedtime" />
+		<result column="closed" property="closed" />
+		<result column="closedby" property="closedby" />
+		<result column="closedtime" property="closedtime" />
+	</resultMap>
+
+</mapper>

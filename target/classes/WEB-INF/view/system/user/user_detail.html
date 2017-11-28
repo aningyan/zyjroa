@@ -1,0 +1,81 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins" >
+
+    <div class="ibox-content">
+        <div class="form-horizontal" id="UserInfoForm">
+
+            <input type="hidden" id="id" value="${user.id}">
+
+            <div class="row">
+                <div class="col-sm-10">
+     				<#input id="account" name="工号" underline="true" readonly="readonly" value="${user.account}"   />
+                    <#input id="name" name="姓名" underline="true"  readonly="readonly"  value="${user.name}"   />
+ 					<#input id="birthday" name="生日" underline="true" readonly="readonly" value="${user.birthday}" />
+                    <#input id="sex" name="性别" underline="true" readonly="readonly" value="${user.sex}" />
+		 			<#input id="email" name="邮箱" underline="true" readonly="readonly" value="${user.email}" />
+ 					<#input id="phone" name="电话" underline="true" readonly="readonly" value="${user.phone}" />
+ 					<#input id="roleid" name="角色" underline="true" readonly="readonly" value="${user.roleid}" />
+ 					<#input id="deptid" name="部门" underline="true" readonly="readonly" value="${user.deptid}" />
+ 					<#input id="status" name="状态" underline="true" readonly="readonly" value="${user.status}" />
+ 					<#input id="job" name="公司岗位" underline="true" readonly="readonly" value="${user.job}" />
+ 					<#input id="usertype" name="员工类型" underline="true" readonly="readonly" value="${user.usertype}" />
+ 					<#input id="jobtype" name="岗位类型" underline="true" readonly="readonly" value="${user.jobtype}" />
+ 					<#input id="levelid" name="职级" underline="true" readonly="readonly" value="${user.levelid}" />
+ 					
+ 					
+ 					 <#input id="marriageStatus" name="婚姻状况" underline="true" value="${user.marriageStatus}" readonly="readonly" />
+                    <#input id="idcard" name="身份证号码" underline="true" value="${user.idcard}" readonly="readonly" />
+ 					<#input id="nationality" name="民族" underline="true" readonly="readonly" value="${user.nationality}" />
+                    <#input id="direct" name="直属上级" underline="true" readonly="readonly" value="${user.direct}" />
+		 			<#input id="entrydate" name="入职日期" underline="true" readonly="readonly" value="${user.entrydate}" />
+ 					<#input id="translateDate" name="转正日期" underline="true" readonly="readonly" value="${user.translateDate}" />
+ 					<#input id="leaveDate" name="离职日期" underline="true" readonly="readonly" value="${user.leaveDate}" />
+ 					
+ 					<#input id="politicalStatus" name="政治面貌" underline="true" readonly="readonly" value="${user.politicalStatus}" />
+ 					<#input id="startWorkTime" name="开始工作时间" underline="true" readonly="readonly" value="${user.startWorkTime}" />
+ 					<#input id="nativePlace" name="籍贯" underline="true" readonly="readonly" value="${user.nativePlace}" />
+ 					 
+ 					 
+ 					 
+ 				 	<#input id="registerAddress" name="户籍地址" underline="true" value="${user.registerAddress}" readonly="readonly" />
+ 					<#input id="contactAddress" name="联系地址" underline="true" value="${user.contactAddress}" readonly="readonly" />
+ 					<#input id="emergencyPerson" name="紧急联系人" underline="true"   value="${user.emergencyPerson}" readonly="readonly" />
+ 					<#input id="emergencyMobile" name="紧急联系电话" underline="true"   value="${user.emergencyMobile}" readonly="readonly" />
+ 					 <#input id="emergencyRelation" name="紧急联系人关系" underline="true" value="${user.emergencyRelation}" readonly="readonly"   />
+                    <#input id="emergencyAddress" name="紧急联系地址" underline="true" value="${user.emergencyAddress}" readonly="readonly"   />
+ 					<#input id="graduateSchool" name="毕业院校" underline="true"   value="${user.graduateSchool}" readonly="readonly" />
+                    <#input id="major" name="专业" underline="true"   value="${user.major}" readonly="readonly" />
+		 			<#input id="education" name="学历" underline="true"   value="${user.education}"  readonly="readonly"/>
+ 					<#input id="degree" name="学位" underline="true"   value="${user.degree}" readonly="readonly" />
+ 					<#input id="professional" name="职称/资格" underline="true"   value="${user.professional}" readonly="readonly" />
+ 					<#input id="contractFirstPaty" name="合同签订甲方" underline="true"   value="${user.contractFirstPaty}" readonly="readonly" />
+ 					<#input id="firstpartyRemark" name="合同签订甲方描述" underline="true"   value="${user.firstpartyRemark}" readonly="readonly" />
+ 					<#input id="contractStartDate" name="合同开始日期" underline="true" value="${user.contractStartDate}"  readonly="readonly"/>
+ 				
+ 					<#input id="probation" name="试用期限(月)" underline="true"   value="${user.probation}"  readonly="readonly"/>
+ 					
+ 						<#input id="contractEndDate" name="合同开始日期" underline="true" value="${user.contractEndDate}"  readonly="readonly"/>
+ 					
+ 					<#input id="salaryAccountUnit" name="工资核算单位" underline="true"   value="${user.salaryAccountUnit}"  readonly="readonly"/>
+ 					
+ 					 <#input id="bankAccount" name="工资卡卡号" underline="true" value="${user.bankAccount}"    readonly="readonly"/>
+                    <#input id="bank" name="工资卡开户行" underline="true" value="${user.bank}"    readonly="readonly"/>
+ 					<#input id="insuranceUnit" name="社保缴纳单位" underline="true"   value="${user.insuranceUnit}"  readonly="readonly"/>
+                    <#input id="insuranceRemark" name="社保缴纳单位描述" underline="true"   value="${user.insuranceRemark}"  readonly="readonly"/>
+		 			<#input id="accumulationUnit" name="公积金缴纳单位" underline="true"   value="${user.accumulationUnit}"  readonly="readonly"/>
+ 					<#input id="accumulationRamark" name="公积金缴纳单位描述" underline="true"   value="${user.accumulationRamark}" readonly="readonly" />
+ 					<#input id="insuranceAddress" name="社保缴纳地" underline="true"   value="${user.insuranceAddress}"  readonly="readonly"/>
+ 					<#input id="accumulationAddress" name="公积金缴纳地" underline="true"   value="${user.accumulationAddress}"  readonly="readonly"/>
+ 					<#input id="workAddress" name="工作地点" underline="true"   value="${user.workAddress}"  readonly="readonly"/>
+ 					<#input id="userSource" name="员工来源" underline="true"   value="${user.userSource}"  readonly="readonly"/>
+ 					<#input id="workExpress" name="工作经历" underline="true"   value="${user.workExpress}"  readonly="readonly"/>               
+ 					
+ 					 </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/user/user_info.js"></script>
+@}

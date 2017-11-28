@@ -1,0 +1,66 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+	<div class="ibox-content">
+		<div class="form-horizontal" id="userTotalForm">
+			<input type="hidden" id="id" value="${user.id}">
+			<div class="row">
+				<div class="col-sm-10">
+	 				 <#input id="account" name="工号" underline="true" readonly="readonly" value="${user.account}"   />
+                    <#input id="name" name="姓名" underline="true"  readonly="readonly"  value="${user.name}"   />
+ 					<#input id="registerAddress" name="户籍地址" underline="true" value="${user.registerAddress}" />
+ 					<#input id="contactAddress" name="联系地址" underline="true" value="${user.contactAddress}" />
+ 					<#input id="emergencyPerson" name="紧急联系人" underline="true"   value="${user.emergencyPerson}" />
+ 					<#input id="emergencyMobile" name="紧急联系电话" underline="true"   value="${user.emergencyMobile}" />
+ 					 <#input id="emergencyRelation" name="紧急联系人关系" underline="true" value="${user.emergencyRelation}"   />
+                    <#input id="emergencyAddress" name="紧急联系地址" underline="true" value="${user.emergencyAddress}"   />
+ 					<#input id="graduateSchool" name="毕业院校" underline="true"   value="${user.graduateSchool}" />
+                    <#input id="major" name="专业" underline="true"   value="${user.major}" />
+		 			<#input id="education" name="学历" underline="true"   value="${user.education}" />
+ 					<#input id="degree" name="学位" underline="true"   value="${user.degree}" />
+ 					<#input id="professional" name="职称/资格" underline="true"   value="${user.professional}" />
+ 					<#input id="contractFirstPaty" name="合同签订甲方" underline="true"   value="${user.contractFirstPaty}" />
+ 					<#input id="firstpartyRemark" name="合同签订甲方描述" underline="true"   value="${user.firstpartyRemark}" />
+ 					<#input id="contractStartDate" name="合同开始日期" underline="true" type="date"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"
+						 underline="true" value="${user.contractStartDate}"/>
+ 				
+ 					<#input id="probation" name="试用期限(月)" underline="true"   value="${user.probation}" />
+ 					
+ 						<#input id="contractEndDate" name="合同开始日期" underline="true" type="date"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"
+						 underline="true" value="${user.contractEndDate}"/>
+ 					
+ 					<#input id="salaryAccountUnit" name="工资核算单位" underline="true"   value="${user.salaryAccountUnit}" />
+ 					
+ 					 <#input id="bankAccount" name="工资卡卡号" underline="true" value="${user.bankAccount}"   />
+                    <#input id="bank" name="工资卡开户行" underline="true" value="${user.bank}"   />
+ 					<#input id="insuranceUnit" name="社保缴纳单位" underline="true"   value="${user.insuranceUnit}" />
+                    <#input id="insuranceRemark" name="社保缴纳单位描述" underline="true"   value="${user.insuranceRemark}" />
+		 			<#input id="accumulationUnit" name="公积金缴纳单位" underline="true"   value="${user.accumulationUnit}" />
+ 					<#input id="accumulationRamark" name="公积金缴纳单位描述" underline="true"   value="${user.accumulationRamark}" />
+ 					<#input id="insuranceAddress" name="社保缴纳地" underline="true"   value="${user.insuranceAddress}" />
+ 					<#input id="accumulationAddress" name="公积金缴纳地" underline="true"   value="${user.accumulationAddress}" />
+ 					<#input id="workAddress" name="工作地点" underline="true"   value="${user.workAddress}" />
+ 					<#input id="userSource" name="员工来源" underline="true"   value="${user.userSource}" />
+ 					<#input id="workExpress" name="工作经历" underline="true"   value="${user.workExpress}" />
+
+				</div>
+			</div>
+
+			<!-- 这是部门选择的下拉框 -->
+			<div id="menuContent" class="menuContent"
+				style="display: none; position: absolute; z-index: 200;">
+				<ul id="treeDemo" class="ztree tree-box" style="width: 249px !important;"></ul>
+			</div>
+
+			<div class="row btn-group-m-t">
+				<div class="col-sm-10">
+					<#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="UserInfoDlg.completeSubmit()"/>
+					<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="UserInfoDlg.close()"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/system/user/user_complete.js"></script>
+@}
