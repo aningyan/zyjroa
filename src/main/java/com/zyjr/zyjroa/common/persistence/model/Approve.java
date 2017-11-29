@@ -47,7 +47,7 @@ public class Approve{
 	/**
 	 *	当前审批人
 	 */
-	private String currentApprover;
+	private int currentApprover;
 
 	/**
 	 *	是否上传
@@ -138,11 +138,11 @@ public class Approve{
 		return approveStatusText;
 	}
 
-	public void setCurrentApprover(String currentApprover){
+	public void setCurrentApprover(int currentApprover){
 		this.currentApprover=currentApprover;
 	}
 
-	public String getCurrentApprover(){
+	public int getCurrentApprover(){
 		return currentApprover;
 	}
 

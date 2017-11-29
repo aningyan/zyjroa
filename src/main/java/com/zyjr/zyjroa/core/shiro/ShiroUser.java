@@ -22,6 +22,8 @@ public class ShiroUser implements Serializable {
     public String companyName;        // 公司名称
     public List<String> roleNames; // 角色名称集
     public String job; // 职位
+    public Integer direct;          // 直属上级
+
 
 
 
@@ -95,6 +97,14 @@ public class ShiroUser implements Serializable {
 
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
+	}
+
+	public Integer getDirect() {
+		return direct;
+	}
+
+	public void setDirect(Integer direct) {
+		this.direct = direct;
 	}
 
 }
