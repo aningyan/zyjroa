@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyjr.zyjroa.modular.system.dao.ApproveDao">
+
+	<select id="getMyApprove" resultType="com.zyjr.zyjroa.common.persistence.model.Approve">
+		select a.* from
+		approve a
+		join approver r on a.approveid=r.approveid
+		where r.approverid=#{userid}
+	</select>
+
+	
+	<select id="approveDetail" resultType="map">
+		select * from
+		approve 
+		where approveid=#{approveid}
+	</select>
+</mapper>
