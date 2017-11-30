@@ -64,7 +64,7 @@ public class ApproveController extends BaseController {
 
 
     /**
-     * 跳转到公司管理首页
+     * 跳转到申请表单首页
      */
     @RequestMapping("")
     public String index() {
@@ -172,6 +172,9 @@ public class ApproveController extends BaseController {
 					apper.setStatus(0);
 					apper.setStatusText("待审批");
 				}
+				//审批流程中配置如果存在角色相同的审批人,则跳过重复审批人
+	    		//1.申请人和审批人相同
+				
 				switch(roleid) {
 		    	case 1:              
 		            //查找当前提交人的直属上级
